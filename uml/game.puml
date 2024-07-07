@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Game
+{
+    + {abstract} levelUp():double
+    + {abstract} enemyGenerate(List<EnemyAircraft> enemyAircrafts):void
+}
+class EasyGame
+{
+    - enemyMaxNumber:int
+    - enemyFactory:EnemyFactory
+    + levelUp():double
+    + enemyGenerate(List<EnemyAircraft> enemyAircrafts):void
+}
+class NormalGame
+{
+    - enemyMaxNumber:int
+    - enemyFactory:EnemyFactory
+    + levelUp():double
+    + enemyGenerate(List<EnemyAircraft> enemyAircrafts):void
+}
+class HardGame
+{
+    - enemyMaxNumber:int
+    - enemyFactory:EnemyFactory
+    + levelUp():double
+    + enemyGenerate(List<EnemyAircraft> enemyAircrafts):void
+}
+Game<|--EasyGame
+Game<|--NormalGame
+Game<|--HardGame
+@enduml

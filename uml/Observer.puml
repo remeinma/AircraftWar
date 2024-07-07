@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface MyObserver
+{
+    + {abstract}response():void
+}
+
+class EnemyList
+{
+    - enemyBullets:List<BaseBullet>
+    - enemyAircrafts:List<EnemyAircraft>
+    + EnemyList(List<BaseBullet> enemyBullets,List<EnemyAircraft> enemyAircrafts)
+    + response():void
+}
+
+class EnemyBulletList
+{
+    - enemyBullets:List<BaseBullet>
+    - enemyAircrafts:List<EnemyAircraft>
+    + EnemyBulletList(List<BaseBullet> enemyBullets,List<EnemyAircraft> enemyAircrafts)
+    + response():void
+}
+
+class BombSupply
+{
+    # observers:ArrayList
+    + addObserver(MyObserver observer):void
+    + notice(): void
+}
+
+class PropBomb
+{
+}
+
+PropBomb ..> BombSupply
+BombSupply o--> MyObserver
+MyObserver <|.. EnemyList
+MyObserver <|.. EnemyBulletList
+
+@enduml

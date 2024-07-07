@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface PropFactory{
+    + createProp(int locationX, int locationY):BaseProp
+}
+
+
+abstract class BaseProp
+{
+    + BaseProp(int locationX, int locationY,
+     int speedX, int speedY)
+	+ {abstract} effect(HeroAircraft heroAircraft, List<EnemyAircraft> enemyAircrafts,
+                            List<BaseBullet> enemyBullets):void
+}
+
+class PropBlood {
+    - addblood:int
+    + PropBlood(int locationX, int locationY,
+     int speedX, int speedY)
+    + forward():void
+    + effect(HeroAircraft heroAircraft, List<EnemyAircraft> enemyAircrafts,
+                 List<BaseBullet> enemyBullets):void
+}
+
+class PropBomb {
+    + PropBomb(int locationX, int locationY,
+     int speedX, int speedY)
+    + forward():void
+    + effect(HeroAircraft heroAircraft, List<EnemyAircraft> enemyAircrafts,
+                 List<BaseBullet> enemyBullets):void
+}
+
+class PropBullet {
+    + PropBullet(int locationX, int locationY,
+     int speedX, int speedY)
+    + forward():void
+    + effect(HeroAircraft heroAircraft, List<EnemyAircraft> enemyAircrafts,
+                 List<BaseBullet> enemyBullets):void
+}
+
+class PropBulletPlus {
+    + PropBulletPlus(int locationX, int locationY,
+     int speedX, int speedY)
+    + forward():void
+    + getType():int
+    + effect(HeroAircraft heroAircraft, List<EnemyAircraft> enemyAircrafts,
+                 List<BaseBullet> enemyBullets):void
+}
+BaseProp <|-- PropBlood
+BaseProp <|-- PropBomb
+BaseProp <|-- PropBullet
+BaseProp <|-- PropBulletPlus
+
+
+
+class BloodFactory{
+    + createProp(int locationX, int locationY):BaseProp
+}
+
+class BombFactory{
+    + createProp(int locationX, int locationY):BaseProp
+}
+
+class BulletFactory{
+    + createProp(int locationX, int locationY):BaseProp
+}
+
+PropFactory<|..BloodFactory
+PropFactory<|..BombFactory
+PropFactory<|..BulletFactory
+PropFactory<|..BulletPlusFactory
+
+BloodFactory..>PropBlood
+BombFactory..>PropBomb
+BulletFactory..>PropBullet
+BulletPlusFactory..>PropBulletPlus
+
+
+
+@enduml

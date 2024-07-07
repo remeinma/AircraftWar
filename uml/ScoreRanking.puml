@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface ScoreRankingDao
+{
+    + getAllScores():List<ScoreRanking>
+    + doAdd(ScoreRanking scoreRanking):void
+    + doDelete(String name):void
+}
+
+class ScoreRankingDaoImpl
+{
+    - scoreRankings:List<ScoreRanking>
+    + file: File
+    + ScoreRankingDaoImpl()
+    + getAllScores():List<ScoreRanking>
+    + doAdd(ScoreRanking scoreRanking):void
+    + doDelete(String name):void
+    + readFile():void
+    + clearFile():void
+    + writeFile(List<ScoreRanking> scoreRankings):void
+}
+
+class ScoreRanking
+{
+    - name:String
+    - score:int
+    - time:String
+    + ScoreRanking(String name,int score, String time)
+    + getName():String
+    + setName(String name):void
+    + getScore():int
+    + setScore(int score):void
+    + getTime():String
+    + setTime(String time):void
+}
+
+ScoreRankingDao<|..ScoreRankingDaoImpl
+ScoreRanking<--ScoreRankingDaoImpl
+
+class Game {
+}
+
+Game..>ScoreRankingDao
+@enduml
